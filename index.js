@@ -9,6 +9,9 @@ const PORT = 5000;
 // init body parser
 app.use(bodyParser.json());
 
+// specify path and what router to use
+app.use("/users", usersRoutes);
+
 // create first route
 app.get("/", (req, res) => res.send("Hello from home page"));
 
