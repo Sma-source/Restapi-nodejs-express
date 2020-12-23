@@ -8,11 +8,7 @@ const PORT = 5000;
 app.use(bodyParser.json());
 
 // create first route
-app.get("/", (req, res) => {
-  console.log("[TEST]!");
-
-  res.send("Hello from home page");
-});
+app.get("/", (req, res) => res.send("Hello from home page"));
 
 // make app listen for incoming request
 app.listen(PORT, () =>
