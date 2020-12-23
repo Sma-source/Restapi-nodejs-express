@@ -24,7 +24,11 @@ router.post("/", (req, res) => {
 
 // route user id
 router.get("/:id", (req, res) => {
-  res.send("THE GET ID ROUTE");
+  // const id = req.params.id
+  const { id } = req.params;
+
+  const foundUser = users.find((user) => user.id === id);
+  res.send(foundUser);
 });
 
 export default router;
