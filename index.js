@@ -9,5 +9,5 @@ app.use(bodyParser.json());
 
 // make app listen for incoming request
 app.listen(PORT, () =>
-  console.log(`server running on port: http://localhost${PORT}`)
+  console.log(`server running on port: http://localhost:${PORT}`)
 );
