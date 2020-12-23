@@ -23,4 +23,13 @@ router.get("/", (req, res) => {
   res.send(users);
 });
 
+// add user via post
+router.post("/", (req, res) => {
+  console.log("Post route reached");
+
+  const user = req.body;
+  users.push();
+  res.send("Post route reached");
+});
+
 export default router;
