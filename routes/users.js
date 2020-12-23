@@ -34,6 +34,8 @@ router.get("/:id", (req, res) => {
 // delete user with id
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
+
+  users = users.filter((user) => user.id != id);
 });
 
 export default router;
