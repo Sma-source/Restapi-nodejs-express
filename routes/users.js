@@ -31,4 +31,9 @@ router.get("/:id", (req, res) => {
   res.send(foundUser);
 });
 
+// delete user with id
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+});
+
 export default router;
