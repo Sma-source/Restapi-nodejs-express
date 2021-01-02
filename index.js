@@ -3,6 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import moogoose from "mongoose";
 
+import QuizzModel from "./models/QuizzModels";
+
 dotenv.config();
 const app = express();
 moogoose.connect(
