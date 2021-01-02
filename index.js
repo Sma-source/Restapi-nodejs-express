@@ -31,9 +31,9 @@ app.post("/", async (req, res, next) => {
   }
 });
 
-app.get("/:id", (req, res, next) => {
+app.get("/:id", async (req, res, next) => {
   try {
-    QuizzModel.findById(req.params.id);
+    const result = await QuizzModel.findById(req.params.id);
     res.json(result);
   } catch (error) {
     res.status(500).json({
