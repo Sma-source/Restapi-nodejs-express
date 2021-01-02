@@ -19,29 +19,10 @@ app.use(bodyParser.json());
 
 app.post("/", async (req, res, next) => {
   try {
-    const quizz = await QuizzModel.create([
-      {
-        questionText: req.body.questionText,
-        answerOptions: [
-          {
-            answerText: req.body.answerOptions.answerText,
-            isCorrect: req.body.answerOptions.isCorrect,
-          },
-          {
-            answerText: req.body.answerText,
-            isCorrect: req.body.isCorrect,
-          },
-          {
-            answerText: req.body.answerText,
-            isCorrect: req.body.isCorrect,
-          },
-          {
-            answerText: req.body.answerText,
-            isCorrect: req.body.isCorrect,
-          },
-        ],
-      },
-    ]);
+    const quizz = await QuizzModel.create({
+      name: req.body.name,
+      age: req.body.age,
+    });
     res.json(quizz);
   } catch (error) {
     res.status(500).json({
