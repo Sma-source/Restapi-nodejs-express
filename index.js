@@ -30,11 +30,27 @@ app.post("/", async (req, res, next) => {
     });
   }
 });
-
+app.get("/", async (req, res, next) => {
+  try {
+    const all = await QuizzModel.find();
+    res.json(all);
+  } catch (error) {
+    res.status(500).json({
+      error: true,
+      message: error.message,
+    });
+  }
+});
 app.get("/:id", async (req, res, next) => {
   try {
     const result = await QuizzModel.findById(req.params.id);
     res.json(result);
+    if (!result) {
+      return res.status(404).json({
+        error: true,
+        message: "User not found",
+      });
+    }
   } catch (error) {
     res.status(500).json({
       error: true,
