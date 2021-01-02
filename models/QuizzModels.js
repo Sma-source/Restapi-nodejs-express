@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
 
-const quizzSchema = new mongoose.Schema({
-  questionText: String,
-  answerOptions: [
-    { answerText: String, isCorrect: Boolean },
-    { answerText: String, isCorrect: Boolean },
-    { answerText: String, isCorrect: Boolean },
-    { answerText: String, isCorrect: Boolean },
-  ],
-});
+const quizzSchema = new mongoose.Schema([
+  {
+    name: String,
+    age: Number,
+  },
+]);
 
 const QuizzModel = mongoose.model("Quizz", quizzSchema);
 

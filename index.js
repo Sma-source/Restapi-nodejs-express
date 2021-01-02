@@ -13,32 +13,35 @@ moogoose.connect(
     console.log("Connected");
   }
 );
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.post("/", async (req, res, next) => {
   try {
-    const quizz = await QuizzModel.create({
-      questionText: req.body.questionText,
-      answerOptions: [
-        {
-          answerText: req.body.answerText,
-          isCorrect: req.body.isCorrect,
-        },
-        {
-          answerText: req.body.answerText,
-          isCorrect: req.body.isCorrect,
-        },
-        {
-          answerText: req.body.answerText,
-          isCorrect: req.body.isCorrect,
-        },
-        {
-          answerText: req.body.answerText,
-          isCorrect: req.body.isCorrect,
-        },
-      ],
-    });
+    const quizz = await QuizzModel.create([
+      {
+        questionText: req.body.questionText,
+        answerOptions: [
+          {
+            answerText: req.body.answerOptions.answerText,
+            isCorrect: req.body.answerOptions.isCorrect,
+          },
+          {
+            answerText: req.body.answerText,
+            isCorrect: req.body.isCorrect,
+          },
+          {
+            answerText: req.body.answerText,
+            isCorrect: req.body.isCorrect,
+          },
+          {
+            answerText: req.body.answerText,
+            isCorrect: req.body.isCorrect,
+          },
+        ],
+      },
+    ]);
     res.json(quizz);
   } catch (error) {
     res.status(500).json({
