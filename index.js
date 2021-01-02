@@ -19,23 +19,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.post("/", async (req, res, next) => {
   try {
     const quizz = await QuizzModel.create({
-      questionText: "How many Rings of Power have been forged ?",
+      questionText: req.body.questionText,
       answerOptions: [
         {
-          answerText: "1",
-          isCorrect: false,
+          answerText: req.body.answerText,
+          isCorrect: req.body.isCorrect,
         },
         {
-          answerText: "3",
-          isCorrect: false,
+          answerText: req.body.answerText,
+          isCorrect: req.body.isCorrect,
         },
         {
-          answerText: "20",
-          isCorrect: false,
+          answerText: req.body.answerText,
+          isCorrect: req.body.isCorrect,
         },
         {
-          answerText: "9",
-          isCorrect: true,
+          answerText: req.body.answerText,
+          isCorrect: req.body.isCorrect,
         },
       ],
     });
