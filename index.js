@@ -13,9 +13,8 @@ moogoose.connect(
     console.log("Connected");
   }
 );
-
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post("/", async (req, res, next) => {
   try {
@@ -24,6 +23,18 @@ app.post("/", async (req, res, next) => {
       age: req.body.age,
     });
     res.json(quizz);
+  } catch (error) {
+    res.status(500).json({
+      error: true,
+      message: error.message,
+    });
+  }
+});
+
+app.get("/:id", (req, res, next) => {
+  try {
+    QuizzModel.findById(req.params.id);
+    res.json(result);
   } catch (error) {
     res.status(500).json({
       error: true,
