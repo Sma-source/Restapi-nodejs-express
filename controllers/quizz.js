@@ -50,3 +50,12 @@ export const updateQuizz = async (req, res, next) => {
     next(error);
   }
 };
+
+export const removeQuizz = async (req, res, next) => {
+  try {
+    const remove = await QuizzModel.deleteOne({ _id: req.params.id });
+    res.json(remove);
+  } catch (error) {
+    next(error);
+  }
+};
