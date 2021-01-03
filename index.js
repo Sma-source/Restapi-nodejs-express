@@ -32,4 +32,8 @@ app.use((err, req, res, next) => {
     });
   }
 });
+
+app.all("*", (req, res) =>
+  res.send("You've tried reaching a route that doesn't exist.")
+);
 app.listen(3000, () => console.log("Server Started"));
