@@ -1,8 +1,19 @@
 import mongoose from "mongoose";
 
+const subSchema = new mongoose.Schema({
+  answer: {
+    type: String,
+  },
+  isCorrect: {
+    type: Boolean,
+  },
+});
+
 const quizzSchema = new mongoose.Schema({
-  name: String,
-  age: Number,
+  question: {
+    type: String,
+  },
+  options: [subSchema],
 });
 
 const QuizzModel = mongoose.model("Quizz", quizzSchema);

@@ -18,10 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post("/", async (req, res, next) => {
   try {
-    const quizz = await QuizzModel.create({
-      name: req.body.name,
-      age: req.body.age,
-    });
+    const quizz = await QuizzModel.create(req.body);
     res.json(quizz);
   } catch (error) {
     res.status(500).json({
