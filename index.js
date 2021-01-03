@@ -3,7 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import moogoose from "mongoose";
 import QuizzModel from "./models/QuizzModels.js";
-import { HttpError } from "./utils/utils.js";
+import HttpError from "./utils/utils.js";
 
 dotenv.config();
 const app = express();
@@ -56,5 +56,17 @@ app.get("/:id", async (req, res, next) => {
     });
   }
 });
-
+app.use((err, req, res, next) => {
+  if (err instanceof HttpError) {
+    res.status(err.statusCode).json({
+      error: true,
+      message: err.errMessage,
+    });
+  } else {
+    res.status(500).json({
+      error: true,
+      message: "Server Error",
+    });
+  }
+});
 app.listen(3000, () => console.log("Server Started"));
