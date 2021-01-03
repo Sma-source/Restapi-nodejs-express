@@ -1,4 +1,5 @@
 import QuizzModel from "../models/QuizzModels.js";
+import HttpError from "../utils/utils.js";
 
 // get all questions from the quizz
 export const getQuizzs = async (req, res, next) => {
