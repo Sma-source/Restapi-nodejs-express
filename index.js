@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import moogoose from "mongoose";
 import QuizzModel from "./models/QuizzModels.js";
 import HttpError from "./utils/utils.js";
+import e from "express";
 
 dotenv.config();
 const app = express();
@@ -22,10 +23,7 @@ app.post("/", async (req, res, next) => {
     const quizz = await QuizzModel.create(req.body);
     res.json(quizz);
   } catch (error) {
-    res.status(500).json({
-      error: true,
-      message: error.message,
-    });
+    next(e);
   }
 });
 app.get("/", async (req, res, next) => {
@@ -44,10 +42,7 @@ app.get("/:id", async (req, res, next) => {
     const result = await QuizzModel.findById(req.params.id);
     res.json(result);
     if (!result) {
-      return res.status(404).json({
-        error: true,
-        message: "User not found",
-      });
+      return next(new HttpError(404, "User not found"));
     }
   } catch (error) {
     res.status(500).json({
