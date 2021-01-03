@@ -4,6 +4,7 @@ import {
   getQuizz,
   createQuizz,
   updateQuizz,
+  removeQuizz,
 } from "../controllers/quizz.js";
 
 // init router
@@ -20,5 +21,9 @@ router.get("/:id", getQuizz);
 // update quizz
 
 router.put("/:id", updateQuizz);
+
+// remove quizz
+
+router.delete("/:id", removeQuizz);
 
 export default router;
