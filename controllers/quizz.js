@@ -34,3 +34,19 @@ export const createQuizz = async (req, res, next) => {
     next(error);
   }
 };
+
+// update a question
+
+export const updateQuizz = async (req, res, next) => {
+  try {
+    const updateQuizz = await QuizzModel.findByIdAndUpdate(
+      { _id: req.params.id },
+      { question: req.body.question, options: req.body.options },
+      { new: true, useFindAndModify: false, upsert: true }
+    );
+
+    res.json(updateQuizz);
+  } catch (error) {
+    next(error);
+  }
+};
